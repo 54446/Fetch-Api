@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -45,4 +45,61 @@
     </script>
 </body>
 
+</html> -->
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"> <!-- Specifies the character encoding for the document as UTF-8 -->
+    <meta http-equiv="X-UA-Compatible" content="IE-edge"> <!-- Ensures compatibility mode in Internet Explorer -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Sets the viewport for responsive web design -->
+    <title>Send data to the backend</title> <!-- Sets the title of the webpage -->
+    <style>
+        /* Adds spacing around input fields */
+        input {
+            margin-top: 10px; 
+            margin-bottom: 10px;
+            margin-left: 10px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Input fields for user data collection -->
+    <label>Name<input type="text" class="userName" /></label><br>
+    <label>Email<input type="email" class="userEmail" /></label><br>
+    <label>City<input type="text" class="userCity" /></label><br>
+    <!-- Button to trigger the data submission -->
+    <button>Send data</button>
+
+    <script>
+      
+        var myName = document.querySelector(".userName"); //Grabs the input element for the user's name
+        var myEmail = document.querySelector(".userEmail"); //Grabs the input element for the user's email
+        var myCity = document.querySelector(".userCity"); //Grabs the input element for the user's city
+        var button = document.querySelector("button"); //Grabs the button element
+
+        
+        button.addEventListener("click", () => { //Adds a click event listener to the button
+            //Creates an object with user inputs
+            var obj = {
+                name: myName.value, //Stores the value of the name field
+                email: myEmail.value, //Stores the value of the email field
+                city: myCity.value //Stores the value of the city field
+            };
+
+            // Sends the data to the backend using the Fetch API
+            fetch("/contact", { //Endpoint to send the data
+                method: "POST", //HTTP method for sending data
+                headers: {
+                    "Content-type": "application/json" //Specifies the content type as JSON
+                },
+                body: JSON.stringify(obj) //Converts the object into a JSON string
+            });
+        });
+    </script>
+</body>
 </html>
